@@ -2,7 +2,7 @@
 	$headerH1 = "<h1>Первый заголовок, сгенерированный с помощью php</h1>";
 	$mainHeader = "<header>$headerH1</header>";
 	$headTitle = "<title>Homework 1</title>";
-	$currentData = "2019";
+	$currentData = date("Y");
 ?>
 
 <!DOCTYPE html>
