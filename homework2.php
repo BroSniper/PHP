@@ -22,13 +22,13 @@ $b = mt_rand(-10,10);
 echo "a = " . $a . "<br>";
 echo "b = " . $b . "<br>";
 
-if ($a >= 0 & $b >= 0) {
+if ($a >= 0 && $b >= 0) {
 	$c = $a - $b;
 	echo "a - b = $c" . "<br>";
-} elseif ($a < 0 & $b < 0) {
+} elseif ($a < 0 && $b < 0) {
 	$c = $a * $b;
 	echo "a * b = $c" . "<br>";
-} elseif ($a < 0 & $b >= 0 || $a >= 0 & $b < 0) {
+} elseif ($a < 0 && $b >= 0 || $a >= 0 && $b < 0) {
 	$c = $a + $b;
 	echo "a + b = $c" . "<br>" . "<br>";
 }
@@ -82,29 +82,33 @@ switch ($c) {
 function addition($d, $e) {
 	echo "<br>";
 	echo "<br>";
+	echo "Сложение: ";
 	return $d + $e . "<br>";
 }
 
 function substraction ($d, $e) {
+	echo "Разность: ";
 	return $d - $e . "<br>";
 }
 
-function multiplication ($d, $e) {
-	return "Умножение: " . $d * $e . "<br>";
+function multiply ($d, $e) {
+	echo "Умножение: ";
+	return $d * $e . "<br>";
 }
 
-function division ($d, $e) {
-	if ($d != 0 & $e != 0) {
-		return "Деление: " . $d / $e . "<br>";
+function divide ($d, $e) {
+	if ($d != 0 && $e != 0) {
+		echo "Деление: ";
+		return $d / $e . "<br>";
 	} else {
 		echo "На ноль делить нельзя";
 	}
 }
 
-echo addition(2,8);
-echo substraction(7,15);
-echo multiplication(9,12);
-echo division(46,2);
+echo addition(mt_rand(2,8),mt_rand(2,8));
+echo substraction(mt_rand(7,15),mt_rand(7,15));
+echo multiply(mt_rand(1,10),mt_rand(1,10));
+echo divide(mt_rand(2,30),mt_rand(2,30));
 
 /* Задание 4. Реализовать функцию с тремя параметрами: function mathOperation($arg1, $arg2, $operation), где $arg1, $arg2 – значения аргументов, $operation – строка с названием операции. В зависимости от переданного значения операции выполнить одну из арифметических операций (использовать функции из пункта 3) и вернуть полученное значение (использовать switch).*/
 
@@ -114,21 +118,47 @@ function mathOperation($arg1, $arg2, $operation) {
 			return addition($arg1, $arg2);
 			break;
 		case "substraction":
-			return substraction ($arg1, $arg2);
+			return substraction($arg1, $arg2);
 			break;
-		case "multiplication":
-			return multiplication ($arg1, $arg2);
+		case "multiply":
+			return multiply($arg1, $arg2);
 			break;
-		case "division":
-			return division ($arg1, $arg2);
+		case "divide":
+			return divide($arg1, $arg2);
 			break;	
 	}
 }
 
-echo mathOperation(2,10,division) . "<br>";
+echo mathOperation(mt_rand(2,8),mt_rand(2,8),addition) . "<br>";
+echo mathOperation(mt_rand(7,15),mt_rand(7,15),substraction) . "<br>";
+echo mathOperation(mt_rand(1,10),mt_rand(1,10),multiply) . "<br>";
+echo mathOperation(mt_rand(2,30),mt_rand(2,30),divide) . "<br>";
 
 $currentYear = date("Y");
+
+function timeVariables () {
+	$h = date("H");
+	$i = date("i");
+
+	if ($h == 1 || $h == 21) {
+		$hours = " час";
+	} elseif (($h >= 2 && $h <= 4) || ($h >= 22 && $h <= 24)) {
+		$hours = " часа";
+	} else {$hours = " часов";}
+	
+	if (($i < 20 || $i > 10)) {
+		$minutes = " минут";
+	} elseif (($i % 10) === 1) {
+		$minutes = " минута";
+	} elseif ((($i % 10) >= 2) && (($i % 10) <= 4)) {
+		$minutes = " минуты";
+	} else {
+		$minutes = " минут";
+	}
+	return $h . $hours . " " . $i . $minutes;
+}
 ?>
+
 
 <!DOCTYPE html>
 <html>
@@ -137,8 +167,9 @@ $currentYear = date("Y");
 	<title>Document</title>
 </head>
 <body>
-	<header></header>
+	<header><?= timeVariables()?></header>
 	<main></main>
+	<!--Задание 5. Посмотреть на встроенные функции PHP. Используя имеющийся HTML шаблон, вывести текущий год в подвале при помощи встроенных функций PHP.-->
 	<footer><?=$currentYear?></footer>
 </body>
 </html>
