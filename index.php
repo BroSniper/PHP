@@ -10,12 +10,12 @@
 <head>
 	<meta charset="UTF-8">
 	<?php
-		echo "$headTitle";
+		echo $headTitle;
 	?>
 </head>
 <body>
 	<?php
-		echo "$mainHeader";
+		echo $mainHeader;
 	?>
 	<main>
 
@@ -35,10 +35,10 @@
 			$d = $c - $d;
 			$c = $c - $d;
 
-			echo "<br> $c <br> $d";
+			echo "<br>" . $c . "<br>" . $d;
 		?>
 		<?php 
-			echo "<br>$currentData";
+			echo "<br>" . $currentData;
 		?>
 	</footer>
 </body>
